@@ -1,0 +1,46 @@
+<div class="normal-content">
+  <h2>What is this?</h2>
+
+  <p>
+    This is a small demo about Angular2, Firebase and Material design. Main purpose of this demo application is to
+    show how powerful these components are together.
+  </p>
+
+  <div appLayout="row">
+    <div>
+      <h4>Used libraries</h4>
+
+      <md-list class="used-libraries">
+        <md-list-item *ngFor="let item of libraries">
+          <img *ngIf="item.logo" md-list-avatar src="{{item.logo}}" alt="{{item.name}}" />
+
+          <md-icon *ngIf="!item.logo" md-list-avatar>filter_none</md-icon>
+
+          <h3 md-line> {{item.name}} </h3>
+
+          <p md-line>
+            <a href="{{item.url}}" target="_blank">{{item.url}}</a>
+          </p>
+        </md-list-item>
+      </md-list>
+    </div>
+
+    <div>
+      <h4>External links</h4>
+
+      <md-list class="external-links">
+        <md-list-item *ngFor="let item of externalLinks">
+          <img *ngIf="item.logo" md-list-avatar src="{{item.logo}}" alt="{{item.name}}" />
+
+          <md-icon *ngIf="!item.logo" md-list-avatar>filter_none</md-icon>
+
+          <h3 md-line>{{item.name}}</h3>
+
+          <p md-line>
+            <a href="{{item.url}}" target="_blank">{{item.url}}</a>
+          </p>
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
+</div>

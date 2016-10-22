@@ -1,0 +1,32 @@
+<div class="normal-content">
+  <h2>Blog Network</h2>
+
+  <p>
+    Welcome to the Blog Network! Write your post.
+    <button
+      md-mini-fab
+      md-tooltip="New Post"
+      tooltip-position="below"
+      (click)="newPost()">
+      <md-icon>add</md-icon>
+    </button>
+  </p>
+
+  <div appLayout="row">
+    <div>
+      <h4>Latest Posts</h4>
+
+      <md-list>
+        <md-list-item *ngFor="let item of posts">
+          <img *ngIf="item.logo" md-list-avatar src="{{item.logo}}" alt="{{item.title}}" />
+
+          <md-icon *ngIf="!item.logo" md-list-avatar>filter_none</md-icon>
+
+          <h3 md-line> {{item.title}} </h3>      
+          <h4 md-line> {{item.subtitle}} </h4>
+          
+        </md-list-item>
+      </md-list>
+    </div>
+  </div>
+</div>
