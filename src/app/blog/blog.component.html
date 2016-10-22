@@ -3,30 +3,44 @@
 
   <p>
     Welcome to the Blog Network! Write your post.
-    <button
-      md-mini-fab
-      md-tooltip="New Post"
-      tooltip-position="below"
-      (click)="newPost()">
+    <button md-mini-fab md-tooltip="New Post" tooltip-position="below" (click)="showNewPostForm()" *ngIf="!showBlogPostForm">
       <md-icon>add</md-icon>
     </button>
   </p>
 
+  <div style="width:500px;">
+    <form #blogPostForm="ngForm" (submit)="addNewPost()" appLayout="column" *ngIf="showBlogPostForm">
+      <div appLayout="column">
+
+        <md-input name="title" class="fill" placeholder="Post title" required appFlex [(ngModel)]="title"></md-input>
+
+        <md-input name="subtitle" class="fill" placeholder="Post subtitle" appFlex [(ngModel)]="subtitle"></md-input>
+
+        <md-input name="content" class="fill" placeholder="Post content" required appFlex [(ngModel)]="content"></md-input>
+
+        <button type="submit" md-raised-button color="accent" [disabled]="blogPostForm.invalid">
+          Send
+      </button>
+      </div>
+    </form>
+  </div>
   <div appLayout="row">
     <div>
       <h4>Latest Posts</h4>
 
       <md-list>
-        <md-list-item *ngFor="let item of posts">
+        <md-list-item *ngFor="let item of posts | async">
+
           <img *ngIf="item.logo" md-list-avatar src="{{item.logo}}" alt="{{item.title}}" />
 
           <md-icon *ngIf="!item.logo" md-list-avatar>filter_none</md-icon>
 
-          <h3 md-line> {{item.title}} </h3>      
+          <h3 md-line> {{item.title}} </h3>
           <h4 md-line> {{item.subtitle}} </h4>
-          
+
         </md-list-item>
       </md-list>
+
     </div>
   </div>
 </div>

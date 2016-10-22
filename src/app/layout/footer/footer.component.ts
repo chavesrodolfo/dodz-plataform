@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
   public links: any[] = [
     {
-      url: 'https://dodz-plataform.firebaseapp.com/',
+      url: 'https://dodz.com.br',
       icon: 'web',
     }
   ];

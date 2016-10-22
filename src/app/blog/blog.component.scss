@@ -7,10 +7,6 @@ md-list {
   margin-bottom: 16px;
 }
 
-.material-icons {
-  color: white;
-}
-
 :host /deep/ .md-list-item {
   &:hover {
     background-color: rgba(0, 0, 0, .06);

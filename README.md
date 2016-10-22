@@ -33,7 +33,7 @@ this demo application contains following features:
  * Chat with other users
  
 ## Demo
-Demo of this application can be found from [https://dodz-plataform.firebaseapp.com/](https://dodz-plataform.firebaseapp.com/).
+Demo of this application can be found from [https://dodz.com.br/](https://dodz.com.br/).
 
 ## Used libraries, guides, etc.
 
@@ -71,20 +71,28 @@ application.
 
 ```
 {
-    "rules": {
-      "messages": {
-          ".write": "auth !== null",
-          ".read": "auth !== null"
-      },
-      "todos": {
-        "$uid": {
-          // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
-          ".write": "auth !== null && auth.uid === $uid",
-          // grants read access to any user who is logged in with Facebook
-          ".read": "auth !== null && auth.uid === $uid"
-        }
+  "rules": {
+    "messages": {
+      ".write": "auth !== null",
+      ".read": "auth !== null"
+    },
+    "todos": {
+      "$uid": {
+        // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+        ".write": "auth !== null && auth.uid === $uid",
+        // grants read access to any user who is logged in with Facebook
+        ".read": "auth !== null && auth.uid === $uid"
+      }
+    },
+    "posts": {
+      "$uid": {
+        // grants write access to the owner of this user account whose uid must exactly match the key ($uid)
+        ".write": "auth !== null && auth.uid === $uid",
+        // grants read access to any user who is logged in with Facebook
+        ".read": "auth !== null && auth.uid === $uid"
       }
     }
+  }
 }
 ```
 
