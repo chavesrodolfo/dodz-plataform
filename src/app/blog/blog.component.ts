@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FirebaseListObservable } from 'angularfire2';
+import { FirebaseListObservable, AngularFire } from 'angularfire2';
 
 import { BlogPost } from './interfaces/';
 
@@ -22,7 +22,10 @@ export class BlogComponent implements OnInit {
    *
    * @param {ActivatedRoute}  activatedRoute
    */
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    public af: AngularFire
+  ) { }
 
   ngOnInit() {
     this.hideNewPostForm();

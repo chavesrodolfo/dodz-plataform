@@ -2,14 +2,18 @@
   <h2>Blog Network</h2>
 
   <p>
-    Welcome to the Blog Network! Write your post.
-    <button md-mini-fab md-tooltip="New Post" tooltip-position="below" (click)="showNewPostForm()" *ngIf="!showBlogPostForm">
-      <md-icon>add</md-icon>
-    </button>
+    Welcome to the Blog Network! 
+    <span *ngIf="!showBlogPostForm && (af.auth | async)?.uid">
+      Write your post.
+      <button md-mini-fab (click)="showNewPostForm()">
+        <md-icon>add</md-icon>
+      </button>
+    </span>
   </p>
 
-  <div style="width:500px;">
-    <form #blogPostForm="ngForm" (submit)="addNewPost()" appLayout="column" *ngIf="showBlogPostForm">
+  <div style="max-width:500px;">
+    <form #blogPostForm="ngForm" (submit)="addNewPost()" appLayout="column" 
+      *ngIf="showBlogPostForm">
       <div appLayout="column">
 
         <md-input name="title" class="fill" placeholder="Post title" required appFlex [(ngModel)]="title"></md-input>
@@ -37,6 +41,7 @@
 
           <h3 md-line> {{item.title}} </h3>
           <h4 md-line> {{item.subtitle}} </h4>
+          <h4 md-line> {{item.content}} </h4>
 
         </md-list-item>
       </md-list>

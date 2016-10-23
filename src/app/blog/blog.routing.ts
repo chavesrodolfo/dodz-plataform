@@ -8,9 +8,7 @@ export const BlogRoutes: Routes = [
   {
     path: 'blog',
     component: BlogComponent,
-    canActivate: [
-      AuthenticationGuard,
-    ],
+    
     resolve: {
       posts: PostsResolver
     }

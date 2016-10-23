@@ -31,8 +31,8 @@ export class PostsResolver implements Resolve<any> {
       .list('/posts/' + localStorage.getItem('uid'),
       {
         query: {
-          limitToLast: 3,
-          orderByChild: "createdAt"
+          limitToLast: 10,
+          orderByKey: true
         }
       }
       ));
