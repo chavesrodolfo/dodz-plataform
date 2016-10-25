@@ -25,7 +25,8 @@ export class HeaderComponent implements OnInit {
   getAuthData() {
     this.af.auth.subscribe(authData => {
       if (authData) {
-        this.displayName = authData['auth'].displayName;
+        var firstName : string[] = authData['auth'].displayName.split(" ");
+        this.displayName = firstName[0];
         this.photoURL = authData['auth'].photoURL;
       }
     });

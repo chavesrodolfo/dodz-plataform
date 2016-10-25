@@ -29,3 +29,30 @@ app-root {
   display: flex;
   flex: 1 1 auto;
 }
+
+.full-width{
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: block;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.87);
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+  border-bottom-width: 2px;
+  outline: none;
+  width: 100%;
+  font-size: 14px;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0px;
+  background-image: none;
+  margin-bottom: 15px; 
+}
+
+textarea:focus {
+  border-color: #673ab7;
+}

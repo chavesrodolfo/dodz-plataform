@@ -2,7 +2,7 @@
   <h2>Blog Network</h2>
 
   <p>
-    Welcome to the Blog Network! 
+    Welcome to the Blog Network!
     <span *ngIf="!showBlogPostForm && (af.auth | async)?.uid">
       Write your post.
       <button md-mini-fab (click)="showNewPostForm()">
@@ -11,41 +11,40 @@
     </span>
   </p>
 
-  <div style="max-width:500px;">
-    <form #blogPostForm="ngForm" (submit)="addNewPost()" appLayout="column" 
-      *ngIf="showBlogPostForm">
-      <div appLayout="column">
-
-        <md-input name="title" class="fill" placeholder="Post title" required appFlex [(ngModel)]="title"></md-input>
-
-        <md-input name="subtitle" class="fill" placeholder="Post subtitle" appFlex [(ngModel)]="subtitle"></md-input>
-
-        <md-input name="content" class="fill" placeholder="Post content" required appFlex [(ngModel)]="content"></md-input>
-
+  <md-card style="padding: 0px; max-width:800px" *ngIf="showBlogPostForm && (af.auth | async)?.uid">
+    <md-toolbar color="primary">New Post</md-toolbar>
+    <md-card-content style="padding: 15px;">
+      <form #blogPostForm="ngForm" (submit)="addNewPost()">
+        <md-input class="full-width" name="title" placeholder="Post title" required [(ngModel)]="title"></md-input>
+        <md-input class="full-width" name="subtitle" placeholder="Post subtitle" required [(ngModel)]="subtitle"></md-input>
+        <textarea rows="10" class="full-width" #postContent maxlength="10000" name="content" placeholder="Post content *" required [(ngModel)]="content">
+          <md-hint align="end">{{postContent.characterCount}} / 10000</md-hint>
+        </textarea>
         <button type="submit" md-raised-button color="accent" [disabled]="blogPostForm.invalid">
           Send
       </button>
-      </div>
-    </form>
-  </div>
+      </form>
+    </md-card-content>
+  </md-card>
+
   <div appLayout="row">
     <div>
       <h4>Latest Posts</h4>
 
-      <md-list>
-        <md-list-item *ngFor="let item of posts | async">
-
-          <img *ngIf="item.logo" md-list-avatar src="{{item.logo}}" alt="{{item.title}}" />
-
-          <md-icon *ngIf="!item.logo" md-list-avatar>filter_none</md-icon>
-
-          <h3 md-line> {{item.title}} </h3>
-          <h4 md-line> {{item.subtitle}} </h4>
-          <h4 md-line> {{item.content}} </h4>
-
-        </md-list-item>
-      </md-list>
-
+      <div class="flex-container">
+        <div class="flex-item" *ngFor="let item of posts | async">
+          <md-card>
+            <md-card-title>{{item.title}}</md-card-title>
+            <md-card-subtitle>{{item.subtitle}}</md-card-subtitle>
+            <md-card-content>
+              <p>{{item.content.substring(0, 300)}} (...)</p>
+            </md-card-content>
+            <md-card-actions>
+              <button md-button>READ MORE</button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@
         <div appLayout="row" appLayoutAlign="center" appFlex>
           <div appFlex="100%">
             <h3>
-              <span>{{((message.createdAt / 1000) | amFromUnix) | amDateFormat: 'DD.MM.YY HH:mm:ss'}}</span>
+              <span>{{((message.createdAt / 1000) | amFromUnix) | amDateFormat: 'DD/MM/YY HH:mm:ss'}}</span>
               {{message.nick}}
             </h3>
             <p>

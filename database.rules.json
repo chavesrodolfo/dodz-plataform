@@ -18,7 +18,8 @@
         ".write": "auth !== null && auth.uid === $uid",
         // grants read access to any user who is logged in with Facebook
         ".read": true
-      }
+      },
+      ".read": true
     }
   }
 }

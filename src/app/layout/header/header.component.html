@@ -1,20 +1,22 @@
 <md-toolbar color="primary">
-  
-  <span>dodz.com.br</span>
-
+  <span>
+      <md-icon>dashboard</md-icon>
+  </span>
+  <span class="display-name">
+      dodz.com.br
+    </span>
   <div class="fill"></div>
 
-    <span class="display-name">
+  <button md-icon-button [md-menu-trigger-for]="menu">
+    <md-icon>view_list</md-icon>
+  </button>
+
+  <span class="display-name">
       {{displayName}}
     </span>
-    <span *ngIf="(af.auth | async)?.uid">
+  <span *ngIf="(af.auth | async)?.uid">
       <img class="photoProfile" src="{{photoURL}}">
     </span>
-  
-
-  <button md-icon-button [md-menu-trigger-for]="menu">
-    <md-icon>more_vert</md-icon>
-  </button>
 
   <md-menu x-position="before" #menu="mdMenu">
     <!--<button md-menu-item [routerLink]="['/about']">About</button>-->
