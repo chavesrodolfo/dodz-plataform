@@ -49,6 +49,7 @@ export class HeaderComponent implements OnInit {
     this.af.auth.logout();
     this.displayName = '';
     this.photoURL = '';
-    this.router.navigateByUrl('/blog');
+    localStorage.removeItem('uid')
+    this.router.navigateByUrl('/about');
   }
 }

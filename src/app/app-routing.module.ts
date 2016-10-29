@@ -12,7 +12,7 @@ const appRoutes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'blog',
+    redirectTo: 'about',
   },
   ...AboutRoutes,
   ...ChatRoutes,

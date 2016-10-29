@@ -1,10 +1,9 @@
 <div class="content">
-  <h2>Blog Network</h2>
+  <h2>My Blog</h2>
 
   <p>
-    Welcome to the Blog Network!
     <span *ngIf="!showBlogPostForm && (af.auth | async)?.uid">
-      Write your post.
+      Write a post! 
       <button md-mini-fab (click)="showNewPostForm()">
         <md-icon>add</md-icon>
       </button>
@@ -18,17 +17,17 @@
         <form #blogPostForm="ngForm" (submit)="addNewPost()">
           <md-input class="full-width" name="title" placeholder="Post title" required [(ngModel)]="title"></md-input>
           <md-input class="full-width" name="subtitle" placeholder="Post subtitle" required [(ngModel)]="subtitle"></md-input>
-          <!--<textarea rows="10" class="full-width" #postContent maxlength="10000" name="content" placeholder="Post content *" required [(ngModel)]="content">
-          <md-hint align="end">{{postContent.characterCount}} / 10000</md-hint>
-        </textarea>-->
+          <md-input class="full-width" name="imageCoverURL" placeholder="Image cover URL" required [(ngModel)]="imageCoverURL"></md-input>
           <div style="margin-bottom:15px; margin-top:15px;">
             <app-tiny [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)"></app-tiny>
           </div>
-
           <div class="preview" *ngIf="showBlogPostForm && (af.auth | async)?.uid && content">
             <md-toolbar color="accent">Preview</md-toolbar>
             <md-card>
-              <md-card-content>
+              <md-card-content class="preview-content">
+                <div class="post-img" *ngIf="imageCoverURL">
+                  <img [src]="imageCoverURL" height="200">
+                </div>
                 <div [innerHTML]="content">
                 </div>
               </md-card-content>
@@ -49,8 +48,14 @@
   <div class="post" *ngFor="let item of posts | async">
     <md-toolbar>{{item.title}}</md-toolbar>
     <md-card>
-      <md-card-subtitle>{{item.subtitle}}</md-card-subtitle>
+      <md-card-header>
+        <img md-card-avatar src="http://lorempixel.com/40/40/people/9">
+        <md-card-subtitle>{{item.subtitle}}</md-card-subtitle>
+      </md-card-header>
       <md-card-content>
+        <div class="post-img" *ngIf="item.imageCoverURL">
+          <img [src]="item.imageCoverURL" height="200">
+        </div>
         <div [innerHTML]="item.content.substring(0, 3000)"></div>
       </md-card-content>
       <md-card-actions>

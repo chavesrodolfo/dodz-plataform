@@ -14,6 +14,7 @@ export class BlogComponent implements OnInit {
   private posts: FirebaseListObservable<BlogPost[]>;
   private title: string = '';
   private subtitle: string = '';
+  private imageCoverURL: string = '';
   private content: string = '';
   private showBlogPostForm: boolean;
 
@@ -46,6 +47,7 @@ export class BlogComponent implements OnInit {
     let post = {
       title: this.title,
       subtitle: this.subtitle,
+      imageCoverURL: this.imageCoverURL,
       content: this.content,
       public: true,
       createdAt: firebase.database.ServerValue.TIMESTAMP,
@@ -57,6 +59,7 @@ export class BlogComponent implements OnInit {
     this.title = '';
     this.subtitle = '';
     this.content = '';
+    this.imageCoverURL = '';
 
     this.hideNewPostForm();
 
