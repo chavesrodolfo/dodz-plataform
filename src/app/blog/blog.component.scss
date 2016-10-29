@@ -1,3 +1,8 @@
+.content {
+  margin:auto;
+  max-width: 1200px;
+}
+
 .flex-container {
   padding: 0;
   margin: 0;
@@ -10,7 +15,7 @@
   display: flex;
   
   -webkit-flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .flex-item {
@@ -18,4 +23,13 @@
   min-width: 280px;
   max-width: 32%;
   text-align: left;
+}
+
+.post {
+  padding: 15px;
+}
+
+.preview {
+  padding-bottom: 15px;
+  padding-top: 15px; 
 }

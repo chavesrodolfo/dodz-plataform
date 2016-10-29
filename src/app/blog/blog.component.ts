@@ -58,30 +58,15 @@ export class BlogComponent implements OnInit {
     this.subtitle = '';
     this.content = '';
 
+    this.hideNewPostForm();
+
     this.activatedRoute.data.subscribe(data => {
       this.posts = data['posts'];
     });
   }
 
-  postsMock: any[] = [
-    {
-      title: 'Angular 2',
-      logo: '/assets/angular.png',
-      subtitle: 'A better way to build your App',
-    },
-    {
-      title: 'Material Design for Angular 2',
-      logo: '/assets/angular.png',
-      subtitle: 'Official Google guide lines',
-    },
-    {
-      title: 'AngularFire2',
-      logo: '/assets/firebase.png',
-      subtitle: 'Realtime bindings and authentication for Angular 2',
-    },
-    {
-      title: 'angular2-moment',
-      subtitle: 'Full featured date library for parsing, validating, manipulating, and formatting dates',
-    },
-  ];
+  keyupHandlerFunction(content:any):void{
+    this.content=content;
+  }
+
 }

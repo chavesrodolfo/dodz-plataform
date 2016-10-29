@@ -1,4 +1,4 @@
-<div class="normal-content">
+<div class="content">
   <h2>Blog Network</h2>
 
   <p>
@@ -11,40 +11,52 @@
     </span>
   </p>
 
-  <md-card style="padding: 0px; max-width:800px" *ngIf="showBlogPostForm && (af.auth | async)?.uid">
+  <div *ngIf="showBlogPostForm && (af.auth | async)?.uid">
     <md-toolbar color="primary">New Post</md-toolbar>
-    <md-card-content style="padding: 15px;">
-      <form #blogPostForm="ngForm" (submit)="addNewPost()">
-        <md-input class="full-width" name="title" placeholder="Post title" required [(ngModel)]="title"></md-input>
-        <md-input class="full-width" name="subtitle" placeholder="Post subtitle" required [(ngModel)]="subtitle"></md-input>
-        <textarea rows="10" class="full-width" #postContent maxlength="10000" name="content" placeholder="Post content *" required [(ngModel)]="content">
+    <md-card>
+      <md-card-content>
+        <form #blogPostForm="ngForm" (submit)="addNewPost()">
+          <md-input class="full-width" name="title" placeholder="Post title" required [(ngModel)]="title"></md-input>
+          <md-input class="full-width" name="subtitle" placeholder="Post subtitle" required [(ngModel)]="subtitle"></md-input>
+          <!--<textarea rows="10" class="full-width" #postContent maxlength="10000" name="content" placeholder="Post content *" required [(ngModel)]="content">
           <md-hint align="end">{{postContent.characterCount}} / 10000</md-hint>
-        </textarea>
-        <button type="submit" md-raised-button color="accent" [disabled]="blogPostForm.invalid">
+        </textarea>-->
+          <div style="margin-bottom:15px; margin-top:15px;">
+            <app-tiny [elementId]="'my-editor-id'" (onEditorKeyup)="keyupHandlerFunction($event)"></app-tiny>
+          </div>
+
+          <div class="preview" *ngIf="showBlogPostForm && (af.auth | async)?.uid && content">
+            <md-toolbar color="accent">Preview</md-toolbar>
+            <md-card>
+              <md-card-content>
+                <div [innerHTML]="content">
+                </div>
+              </md-card-content>
+            </md-card>
+          </div>
+          <button md-raised-button (click)="hideNewPostForm()">
+            Cancel
+          </button>
+          <button type="submit" md-raised-button color="accent" [disabled]="blogPostForm.invalid">
           Send
-      </button>
-      </form>
-    </md-card-content>
-  </md-card>
-
-  <div appLayout="row">
-    <div>
-      <h4>Latest Posts</h4>
-
-      <div class="flex-container">
-        <div class="flex-item" *ngFor="let item of posts | async">
-          <md-card>
-            <md-card-title>{{item.title}}</md-card-title>
-            <md-card-subtitle>{{item.subtitle}}</md-card-subtitle>
-            <md-card-content>
-              <p>{{item.content.substring(0, 300)}} (...)</p>
-            </md-card-content>
-            <md-card-actions>
-              <button md-button>READ MORE</button>
-            </md-card-actions>
-          </md-card>
-        </div>
-      </div>
-    </div>
+        </button>
+        </form>
+      </md-card-content>
+    </md-card>
   </div>
+
+
+  <div class="post" *ngFor="let item of posts | async">
+    <md-toolbar>{{item.title}}</md-toolbar>
+    <md-card>
+      <md-card-subtitle>{{item.subtitle}}</md-card-subtitle>
+      <md-card-content>
+        <div [innerHTML]="item.content.substring(0, 3000)"></div>
+      </md-card-content>
+      <md-card-actions>
+        <button md-button>READ MORE</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+
 </div>
