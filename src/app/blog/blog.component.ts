@@ -15,6 +15,7 @@ export class BlogComponent implements OnInit {
   private title: string = '';
   private subtitle: string = '';
   private imageCoverURL: string = '';
+  private imageProfileURL: string = '';
   private content: string = '';
   private showBlogPostForm: boolean;
 
@@ -48,6 +49,7 @@ export class BlogComponent implements OnInit {
       title: this.title,
       subtitle: this.subtitle,
       imageCoverURL: this.imageCoverURL,
+      imageProfileURL: this.imageProfileURL,
       content: this.content,
       public: true,
       createdAt: firebase.database.ServerValue.TIMESTAMP,
