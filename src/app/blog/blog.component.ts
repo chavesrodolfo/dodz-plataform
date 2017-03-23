@@ -18,7 +18,6 @@ export class BlogComponent implements OnInit {
   private imageProfileURL: string = '';
   private content: string = '';
   private showBlogPostForm: boolean;
-
   /**
    * Constructor of the class
    *
@@ -33,6 +32,15 @@ export class BlogComponent implements OnInit {
     this.hideNewPostForm();
     this.activatedRoute.data.subscribe(data => {
       this.posts = data['posts'];
+    });
+    this.getAuthData();
+  }
+
+  getAuthData() {
+    this.af.auth.subscribe(authData => {
+      if (authData) {
+        this.imageProfileURL = authData['auth'].photoURL;
+      }
     });
   }
 
@@ -62,6 +70,7 @@ export class BlogComponent implements OnInit {
     this.subtitle = '';
     this.content = '';
     this.imageCoverURL = '';
+    this.imageProfileURL = '';
 
     this.hideNewPostForm();
 
