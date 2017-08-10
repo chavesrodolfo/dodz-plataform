@@ -28,7 +28,7 @@ this demo application contains following features:
  * Chat with other users
  
 ## Demo
-Demo of this application can be found from [https://dodz.com.br/](https://dodz.com.br/).
+Demo of this application can be found from [https://dodz-plataform.firebaseapp.com](https://dodz-plataform.firebaseapp.com).
 
 ## Used libraries, guides, etc.
 
